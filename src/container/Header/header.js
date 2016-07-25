@@ -7,8 +7,10 @@ import {
   H6,
   Button,
 } from 'jam-components';
+import jump from 'jump.js';
+import image from './header.jpg';
 
-const HEADER_IMAGE = 'https://images.unsplash.com/photo-1445089073948-809762476ed5?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=dd6c15997d6cf1dec40c7426acc9768d';
+const HEADER_IMAGE = image;
 const HEADER_HEIGHT = '75vh';
 const BUTTON_COLOR = 'black';
 const HEADER_PADDING_TOP = '225px';
@@ -24,7 +26,7 @@ function Header() {
         <H1>Ali Waseem</H1>
         <H5>Software Engineer, Proud Canadian</H5>
         <H6>Living in Los Angeles, CA</H6>
-        <Button color={BUTTON_COLOR}>tell me more</Button>
+        <Button click={() => jump('#summary')} color={BUTTON_COLOR}>tell me more</Button>
       </TextCenter>
     </JamHeader>
   );

@@ -1,11 +1,15 @@
 import React from 'react';
 import Header from './Header/header';
+import Portfolio from './Portfolio/portfolio';
+import { FadeIn as Fade } from 'jam-components';
+import '../styles/App.css';
 
 function App() {
   return (
-    <div>
+    <Fade autoplay>
       <Header />
-    </div>
+      <Portfolio />
+    </Fade>
   );
 }
 
