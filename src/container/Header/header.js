@@ -24,8 +24,8 @@ function Header() {
     >
       <TextCenter>
         <H1>Ali Waseem</H1>
-        <H5>Software Engineer, Proud Canadian</H5>
-        <H6>Living in Los Angeles, CA</H6>
+        <H5>Software Engineer</H5>
+        <H6>Proud Canadian Living in Los Angeles</H6>
         <Button click={() => jump('#summary')} color={BUTTON_COLOR}>tell me more</Button>
       </TextCenter>
     </JamHeader>
