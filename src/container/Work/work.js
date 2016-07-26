@@ -20,13 +20,13 @@ function Work() {
           <H5>GoGuardian</H5>
           <P>Software Engineer</P>
           <P><Emp>May, 2016 - Current</Emp></P>
-          <Button color="blue">About</Button>
+          <Button click={() => window.open('https://www.goguardian.com')} color="blue">About</Button>
         </Col>
         <Col num="six">
           <H5>Pason Systems</H5>
           <P>Software Developer</P>
           <P><Emp>May, 2014 - August, 2015</Emp></P>
-          <Button color="blue">About</Button>
+          <Button click={() => window.open('http://www.pasonusa.com/')} color="blue">About</Button>
         </Col>
       </Row>
     </div>
