@@ -5,8 +5,6 @@ import {
   Container,
   Img,
   P,
-  Row,
-  Col,
   Button,
 } from 'jam-components';
 
