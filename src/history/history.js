@@ -1,8 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import anime from 'animejs';
 import { Router, Route } from 'react-enroute';
 import App from '../container/App';
 import Item from '../container/Portfolio/portfolioItem';
+
+function animate() {
+  anime({
+    duration: '1500',
+    targets: '#animation',
+    rotateY: [90, 0],
+    easing: 'easeOutElastic',
+  });
+}
 
 export function render(state) {
   ReactDOM.render(
@@ -19,7 +29,7 @@ export function navigate(path) {
   window.history.pushState(null, '', '/item');
   // scroll to top
   window.scrollTo(0, 0);
-  // render state
+  animate();
   render({
     location: path,
   });
