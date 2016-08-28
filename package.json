@@ -15,11 +15,14 @@
     "immutable": "^3.8.1",
     "jam-components": "^0.1.10",
     "jump.js": "^1.0.1",
+    "popsicle": "^8.1.1",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
     "react-enroute": "0.0.1",
     "react-redux": "^4.4.5",
-    "redux": "^3.5.2"
+    "redux": "^3.5.2",
+    "redux-logger": "^2.6.1",
+    "redux-thunk": "^2.1.0"
   },
   "scripts": {
     "start": "react-scripts start",

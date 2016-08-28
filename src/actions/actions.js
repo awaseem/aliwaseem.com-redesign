@@ -1,5 +1,5 @@
 import { Map, List } from 'immutable';
-
+import { getSummaryFromStore } from '../requests/dataStore';
 export const SET_SUMMARY = 'setSummary';
 export const SET_CONTACT = 'setContact';
 export const SET_PORTFOLIO = 'setPortfolioItems';
@@ -21,16 +21,36 @@ export function setContactInfo(email = '', github = '', linkedin = '') {
   };
 }
 
-export function setWorkExperience(items = List()) {
+export function setWorkExperience(work = List()) {
   return {
     type: SET_WORK,
-    payload: items,
+    payload: Map({
+      work,
+    }),
   };
 }
 
-export function setPortfolioItems(items = List()) {
+export function setPortfolioItems(portfolio = List()) {
   return {
     type: SET_PORTFOLIO,
-    payload: items,
+    payload: Map({
+      portfolio,
+    }),
+  };
+}
+
+// requests to get data
+
+export function getSummary() {
+  return (dispatch, getState) => {
+    if (!getState().has('summary')) {
+      getSummaryFromStore()
+        .then((res) => {
+          dispatch(setSummary(res.body.value));
+        })
+        .catch(() => {
+          dispatch(setSummary('ERR'));
+        });
+    }
   };
 }

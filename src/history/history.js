@@ -2,8 +2,23 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import anime from 'animejs';
 import { Router, Route } from 'react-enroute';
+import thunkMiddleware from 'redux-thunk';
+import createLogger from 'redux-logger';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import { Map } from 'immutable';
+import reducer from '../reducer/main';
 import App from '../container/App';
 import Item from '../container/Portfolio/portfolioItem';
+import { getSummary } from '../actions/actions';
+
+const loggerMiddleware = createLogger();
+
+const middlewares = [thunkMiddleware, loggerMiddleware];
+
+const createStoreWithMiddleware = applyMiddleware(...middlewares)(createStore);
+
+const store = createStoreWithMiddleware(reducer, Map());
 
 function animate() {
   anime({
@@ -16,12 +31,15 @@ function animate() {
 
 export function render(state) {
   ReactDOM.render(
-    <Router {...state}>
-      <Route path="/" component={App} />
-      <Route path="/item" component={Item} />
-    </Router>,
+    <Provider store={store}>
+      <Router {...state}>
+        <Route path="/" component={App} />
+        <Route path="/item" component={Item} />
+      </Router>
+    </Provider>,
     document.getElementById('root')
   );
+  store.dispatch(getSummary());
 }
 
 export function navigate(path) {
