@@ -8,6 +8,7 @@ import {
   P,
   Button,
 } from 'jam-components';
+import { navigate } from '../../history/history';
 
 function Portfolio() {
   return (
@@ -18,7 +19,7 @@ function Portfolio() {
         <Col num="four">
           <H5>Jam</H5>
           <P>React UI Library.</P>
-          <Button color="green">Learn More</Button>
+          <Button click={() => navigate('/item')} color="green">Learn More</Button>
         </Col>
         <Col num="four">
           <H5>Reddit Bot</H5>

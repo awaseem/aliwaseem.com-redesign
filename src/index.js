@@ -1,17 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Router, Route } from 'react-enroute';
-import App from './container/App';
-import Item from './container/Portfolio/portfolioItem';
+import { render } from './history/history';
 
+// Starting point of the app
 const initalState = {
   location: window.location.pathname,
 };
 
-ReactDOM.render(
-  <Router {...initalState}>
-    <Route path="/" component={App} />
-    <Route path="/item" component={Item} />
-  </Router>,
-  document.getElementById('root')
-);
+window.addEventListener('popstate', () => {
+  render({
+    location: window.location.pathname,
+  });
+});
+
+render(initalState);

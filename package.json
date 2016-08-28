@@ -1,5 +1,5 @@
 {
-  "name": "aliwaseemRedesign",
+  "name": "aliwaseem-redsign",
   "version": "0.0.1",
   "private": true,
   "devDependencies": {
@@ -11,6 +11,7 @@
     "react-scripts": "0.1.0"
   },
   "dependencies": {
+    "animejs": "^1.1.0",
     "immutable": "^3.8.1",
     "jam-components": "^0.1.10",
     "jump.js": "^1.0.1",
