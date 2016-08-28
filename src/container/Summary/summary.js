@@ -24,7 +24,7 @@ Summary.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    summary: state.get('summary') || 'N/A',
+    summary: state.get('summary') || 'Loading...',
   };
 }
 

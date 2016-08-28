@@ -1,5 +1,5 @@
 import { Map, List } from 'immutable';
-import { getSummaryFromStore } from '../requests/dataStore';
+import { getSummaryFromStore, getContactFromStore } from '../requests/dataStore';
 export const SET_SUMMARY = 'setSummary';
 export const SET_CONTACT = 'setContact';
 export const SET_PORTFOLIO = 'setPortfolioItems';
@@ -50,6 +50,21 @@ export function getSummary() {
         })
         .catch(() => {
           dispatch(setSummary('ERR'));
+        });
+    }
+  };
+}
+
+export function getContact() {
+  return (dispatch, getState) => {
+    if (!getState().has('email') || !getState().has('github') || !getState().has('linkedin')) {
+      getContactFromStore()
+        .then((res) => {
+          const { email, github, linkedin } = JSON.parse(res.body.value);
+          dispatch(setContactInfo(email, github, linkedin));
+        })
+        .catch(() => {
+          dispatch(setContactInfo('ERR', 'ERR', 'ERR'));
         });
     }
   };

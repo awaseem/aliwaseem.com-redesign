@@ -10,7 +10,7 @@ import { Map } from 'immutable';
 import reducer from '../reducer/main';
 import App from '../container/App';
 import Item from '../container/Portfolio/portfolioItem';
-import { getSummary } from '../actions/actions';
+import { getSummary, getContact } from '../actions/actions';
 
 const loggerMiddleware = createLogger();
 
@@ -40,6 +40,7 @@ export function render(state) {
     document.getElementById('root')
   );
   store.dispatch(getSummary());
+  store.dispatch(getContact());
 }
 
 export function navigate(path) {
