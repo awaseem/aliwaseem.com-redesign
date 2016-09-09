@@ -4,6 +4,7 @@ const DATASTORE_URL = 'https://blob.aliwaseem.com';
 const SUMMARY_KEY = 'aliwaseem-summary';
 const CONTACT_KEY = 'aliwaseem-contact';
 const WORK_KEY = 'aliwaseem-work';
+const PORTFOLIO_KEY = 'aliwaseem-portfolio';
 
 function get(url) {
   return request({
@@ -23,4 +24,8 @@ export function getContactFromStore() {
 
 export function getWorkFromStore() {
   return get(`${DATASTORE_URL}/get/${WORK_KEY}`);
+}
+
+export function getPortolfioFromStore() {
+  return get(`${DATASTORE_URL}/get/${PORTFOLIO_KEY}`);
 }

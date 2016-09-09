@@ -1,5 +1,9 @@
 import { Map, List, fromJS } from 'immutable';
-import { getSummaryFromStore, getContactFromStore, getWorkFromStore } from '../requests/dataStore';
+import { getSummaryFromStore,
+         getContactFromStore,
+         getWorkFromStore,
+         getPortolfioFromStore
+} from '../requests/dataStore';
 export const SET_SUMMARY = 'setSummary';
 export const SET_CONTACT = 'setContact';
 export const SET_PORTFOLIO = 'setPortfolioItems';
@@ -34,7 +38,7 @@ export function setPortfolioItems(portfolio = List()) {
   return {
     type: SET_PORTFOLIO,
     payload: Map({
-      portfolio,
+      portfolio: fromJS(portfolio),
     }),
   };
 }
@@ -79,6 +83,20 @@ export function getWork() {
         })
         .catch(() => {
           dispatch(setWorkExperience(['ERR']));
+        });
+    }
+  };
+}
+
+export function getPortfolio() {
+  return (dispatch, getState) => {
+    if (!getState().has('portfolio')) {
+      getPortolfioFromStore()
+        .then((res) => {
+          dispatch(setPortfolioItems(JSON.parse(res.body.value)));
+        })
+        .catch(() => {
+          dispatch(setPortfolioItems(['ERR']));
         });
     }
   };

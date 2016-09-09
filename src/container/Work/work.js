@@ -1,36 +1,29 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
 import {
   H2,
-  P,
   Hr,
-  Row,
-  Col,
-  H5,
-  Emp,
-  Button,
 } from 'jam-components';
+import { createWorkRows } from '../../helpers/colHelper';
 
-function Work() {
+function Work({ workRows }) {
   return (
     <div>
       <H2>Work Experince</H2>
       <Hr />
-      <Row>
-        <Col num="six">
-          <H5>GoGuardian</H5>
-          <P>Software Engineer</P>
-          <P><Emp>May, 2016 - Current</Emp></P>
-          <Button click={() => window.open('https://www.goguardian.com')} color="blue">About</Button>
-        </Col>
-        <Col num="six">
-          <H5>Pason Systems</H5>
-          <P>Software Developer</P>
-          <P><Emp>May, 2014 - August, 2015</Emp></P>
-          <Button click={() => window.open('http://www.pasonusa.com/')} color="blue">About</Button>
-        </Col>
-      </Row>
+      {workRows}
     </div>
   );
 }
 
-export default Work;
+Work.propTypes = {
+  workRows: PropTypes.any.isRequired,
+};
+
+function mapStateToProps(state) {
+  return {
+    workRows: createWorkRows(state.get('work')),
+  };
+}
+
+export default connect(mapStateToProps)(Work);
