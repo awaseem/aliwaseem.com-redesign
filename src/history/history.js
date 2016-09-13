@@ -22,19 +22,20 @@ const store = createStoreWithMiddleware(reducer, Map());
 
 function animate() {
   anime({
-    duration: '1500',
+    duration: '500',
     targets: '#animation',
     rotateY: [90, 0],
-    easing: 'easeOutElastic',
+    easing: 'easeOutQuint',
   });
 }
 
 export function render(state) {
+  animate();
   ReactDOM.render(
     <Provider store={store}>
       <Router {...state}>
         <Route path="/" component={App} />
-        <Route path="/item" component={Item} />
+        <Route path="/item/:item" component={Item} />
       </Router>
     </Provider>,
     document.getElementById('root')
@@ -47,10 +48,9 @@ export function render(state) {
 
 export function navigate(path) {
   // push the location to window history
-  window.history.pushState(null, '', '/item');
+  window.history.pushState(null, '', path);
   // scroll to top
   window.scrollTo(0, 0);
-  animate();
   render({
     location: path,
   });

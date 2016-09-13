@@ -2,7 +2,7 @@ import { Map, List, fromJS } from 'immutable';
 import { getSummaryFromStore,
          getContactFromStore,
          getWorkFromStore,
-         getPortolfioFromStore
+         getPortolfioFromStore,
 } from '../requests/dataStore';
 export const SET_SUMMARY = 'setSummary';
 export const SET_CONTACT = 'setContact';

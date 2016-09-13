@@ -1,4 +1,4 @@
-import { List, fromJS } from 'immutable';
+import { List } from 'immutable';
 import React from 'react';
 import {
   P,

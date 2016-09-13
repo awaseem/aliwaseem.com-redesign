@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
+import { List, Map } from 'immutable';
+import { connect } from 'react-redux';
 import {
   H2,
   Hr,
@@ -8,32 +10,53 @@ import {
   Button,
 } from 'jam-components';
 
-function PortfolioItem() {
+function PortfolioItem({ title, description, source, example, image }) {
   return (
     <div>
       <Container>
         <br />
-        <H2>Jam</H2>
+        <H2>{title}</H2>
         <Hr />
-        <Button color="blue">Source Code</Button>
+        <Button click={() => window.open(source)} color="blue">Source Code</Button>
         <span style={{ paddingLeft: '10px', paddingRight: '10px' }} />
-        <Button color="red">Example</Button>
+        <Button click={() => window.open(example)} color="red">Example</Button>
         <P>
-          Lorem ipsum dolor sit amet, consectetuer adipiscing
-          elit. Aenean commodo ligula eget dolor. Aenean massa.
-          Cum sociis natoque penatibus et magnis dis parturient montes,
-          nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
-          pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo,
-          fringilla vel, aliquet nec,
-          vulputate eget, arcu. In
-          enim justo, rhoncus ut, imperdiet a, venenatis vitae,
-          justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt.
-          Cras dapibus. Vivamus elementum semper nisi.
+          {description}
         </P>
-        <Img src="https://github.com/awaseem/Jam/raw/master/assets/JamCover.png" alt="jam" width="100%" />
+        <Img src={image} alt={title} width="100%" />
       </Container>
     </div>
   );
 }
 
-export default PortfolioItem;
+PortfolioItem.propTypes = {
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  source: PropTypes.string.isRequired,
+  example: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+};
+
+function mapStateToProps(state, ownProps) {
+  const defaultState = {
+    title: 'ERR',
+    description: 'ERR',
+    source: 'ERR',
+    example: 'ERR',
+    image: 'ERR',
+  };
+  const itemName = ownProps.params.item;
+  const itemInState = state.get('portfolio') || List();
+  const item = itemInState.filter(
+    items => items.get('title') === itemName
+  ).first() || Map(defaultState);
+  return {
+    title: item.get('title'),
+    description: item.get('description'),
+    source: item.get('source'),
+    example: item.get('example'),
+    image: item.get('image'),
+  };
+}
+
+export default connect(mapStateToProps)(PortfolioItem);
