@@ -10,6 +10,7 @@ import { Map } from 'immutable';
 import reducer from '../reducer/main';
 import App from '../container/App';
 import Item from '../container/Portfolio/portfolioItem';
+import Login from '../container/Admin/login';
 import { getSummary, getContact, getWork, getPortfolio } from '../actions/actions';
 
 const loggerMiddleware = createLogger();
@@ -35,6 +36,7 @@ export function render(state) {
     <Provider store={store}>
       <Router {...state}>
         <Route path="/" component={App} />
+        <Route path="/login" component={Login} />
         <Route path="/item/:item" component={Item} />
       </Router>
     </Provider>,
