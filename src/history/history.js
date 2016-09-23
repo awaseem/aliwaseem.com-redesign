@@ -11,6 +11,7 @@ import reducer from '../reducer/main';
 import App from '../container/App';
 import Item from '../container/Portfolio/portfolioItem';
 import Login from '../container/Admin/login';
+import Admin from '../container/Admin/admin';
 import { getSummary, getContact, getWork, getPortfolio } from '../actions/actions';
 
 const loggerMiddleware = createLogger();
@@ -37,6 +38,7 @@ export function render(state) {
       <Router {...state}>
         <Route path="/" component={App} />
         <Route path="/login" component={Login} />
+        <Route path="/admin" component={Admin} />
         <Route path="/item/:item" component={Item} />
       </Router>
     </Provider>,
