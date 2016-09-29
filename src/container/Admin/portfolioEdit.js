@@ -1,13 +1,13 @@
 import React, { PropTypes } from 'react';
-import WorkEditItem from './workEditItem';
+import PortfolioEditItem from './portfolioEditItem';
 import {
   Button,
 } from 'jam-components';
 
-class WorkEdit extends React.Component {
+class PortfolioEdit extends React.Component {
   constructor(props) {
     super(props);
-    this.workItems = [];
+    this.portfolioItems = [];
     this.state = { items: props.items || [{}] };
     this.add = this.add.bind(this);
     this.updateItem = this.updateItem.bind(this);
@@ -20,10 +20,10 @@ class WorkEdit extends React.Component {
   }
 
   updateItem(id, updates) {
-    if (this.workItems[id] === undefined) {
-      this.workItems.push(updates);
+    if (this.portfolioItems[id] === undefined) {
+      this.portfolioItems.push(updates);
     } else {
-      this.workItems[id] = updates;
+      this.portfolioItems[id] = updates;
     }
   }
 
@@ -32,7 +32,7 @@ class WorkEdit extends React.Component {
       <div>
         <Button color="red" click={this.add}>Add</Button>
         {this.state.items.map((value, i) =>
-          <WorkEditItem
+          <PortfolioEditItem
             key={i}
             id={i}
             defaults={value}
@@ -47,4 +47,4 @@ class WorkEdit extends React.Component {
 }
 
 
-export default WorkEdit;
+export default PortfolioEdit;

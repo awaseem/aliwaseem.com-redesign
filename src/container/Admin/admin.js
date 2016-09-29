@@ -7,7 +7,8 @@ import {
 } from 'jam-components';
 import SummaryEdit from './summaryEdit';
 import ContactEdit from './contactEdit';
-import WorkEdit from './workEdit';
+import WorkEdit from './WorkEdit';
+import PortfolioEdit from './portfolioEdit';
 
 function Admin() {
   return (
@@ -21,9 +22,13 @@ function Admin() {
           <ContactEdit />
         </Col>
       </Row>
+      <br />
       <Row>
-        <Col num="twelve">
+        <Col num="six">
           <WorkEdit />
+        </Col>
+        <Col num="six">
+          <PortfolioEdit />
         </Col>
       </Row>
     </Container>
