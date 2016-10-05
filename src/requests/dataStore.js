@@ -14,6 +14,25 @@ function get(url) {
   .use(plugins.parse('json'));
 }
 
+function post(url, data = {}) {
+  return request({
+    method: 'POST',
+    url,
+    body: data,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+  .use(plugins.parse('json'));
+}
+
+export function login(username = '', password = '') {
+  return post(`${DATASTORE_URL}/login`, {
+    username,
+    password,
+  });
+}
+
 export function getSummaryFromStore() {
   return get(`${DATASTORE_URL}/get/${SUMMARY_KEY}`);
 }

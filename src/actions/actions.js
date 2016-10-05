@@ -3,11 +3,20 @@ import { getSummaryFromStore,
          getContactFromStore,
          getWorkFromStore,
          getPortolfioFromStore,
+         login,
 } from '../requests/dataStore';
 export const SET_SUMMARY = 'setSummary';
 export const SET_CONTACT = 'setContact';
 export const SET_PORTFOLIO = 'setPortfolioItems';
 export const SET_WORK = 'setWorkExperience';
+export const SET_TOKEN = 'setToken';
+
+export function setToken(token = '') {
+  return {
+    type: SET_TOKEN,
+    payload: Map({ token }),
+  };
+}
 
 export function setSummary(summary = '') {
   return {
@@ -99,5 +108,17 @@ export function getPortfolio() {
           dispatch(setPortfolioItems(['ERR']));
         });
     }
+  };
+}
+
+export function setLoginToken(username = '', password = '') {
+  return (dispatch) => {
+    login(username, password)
+      .then((res) => {
+        dispatch(setToken(JSON.parse(res.body.message)));
+      })
+      .catch(() => {
+        dispatch(setToken('ERR'));
+      });
   };
 }

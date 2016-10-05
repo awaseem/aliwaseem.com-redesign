@@ -1,5 +1,5 @@
 import { Map } from 'immutable';
-import { SET_SUMMARY, SET_CONTACT, SET_PORTFOLIO, SET_WORK } from '../actions/actions';
+import { SET_SUMMARY, SET_CONTACT, SET_PORTFOLIO, SET_WORK, SET_TOKEN} from '../actions/actions';
 
 // generic function to merge states
 function merge(state, newState) {
@@ -16,6 +16,8 @@ export default function main(state = Map(), action) {
     case SET_PORTFOLIO:
       return merge(state, action.payload);
     case SET_WORK:
+      return merge(state, action.payload);
+    case SET_TOKEN:
       return merge(state, action.payload);
     default:
       return state;
