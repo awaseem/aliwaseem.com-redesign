@@ -33,6 +33,22 @@ export function login(username = '', password = '') {
   });
 }
 
+export function setContact(token = '', email = '', github = '', linkedin = '') {
+  return post(`${DATASTORE_URL}/set`, {
+    key: CONTACT_KEY,
+    value: JSON.stringify({ email, github, linkedin }),
+    token,
+  });
+}
+
+export function setSummary(token = '', summary = '') {
+  return post(`${DATASTORE_URL}/set`, {
+    key: SUMMARY_KEY,
+    value: summary,
+    token,
+  });
+}
+
 export function getSummaryFromStore() {
   return get(`${DATASTORE_URL}/get/${SUMMARY_KEY}`);
 }

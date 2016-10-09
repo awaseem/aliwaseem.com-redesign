@@ -4,6 +4,8 @@ import { getSummaryFromStore,
          getWorkFromStore,
          getPortolfioFromStore,
          login,
+         setSummary as setSummaryStore,
+         setContact as setContactStore,
 } from '../requests/dataStore';
 import { navigate } from '../history/history';
 
@@ -122,6 +124,30 @@ export function setLoginToken(username = '', password = '') {
       })
       .catch(() => {
         dispatch(setToken('ERR'));
+      });
+  };
+}
+
+export function setSummaryToStore(token = '', summary = '') {
+  return (dispatch) => {
+    setSummaryStore(token, summary)
+      .then(() => {
+        dispatch(setSummary(summary));
+      })
+      .catch(() => {
+        // TODO: handle error
+      });
+  };
+}
+
+export function setContactToStore(token = '', email = '', github = '', linkedin = '') {
+  return (dispatch) => {
+    setContactStore(token, email, github, linkedin)
+      .then(() => {
+        dispatch(setContactInfo(email, github, linkedin));
+      })
+      .catch(() => {
+        // TODO: handle error
       });
   };
 }
