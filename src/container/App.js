@@ -14,7 +14,7 @@ import '../styles/App.css';
 
 function App() {
   return (
-    <Fade autoplay>
+    <div>
       <Header />
       <Container>
         <Row>
@@ -30,7 +30,7 @@ function App() {
         <Portfolio />
         <br />
       </Container>
-    </Fade>
+    </div>
   );
 }
 

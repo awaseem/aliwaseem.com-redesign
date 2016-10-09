@@ -24,15 +24,14 @@ const store = createStoreWithMiddleware(reducer, Map());
 
 function animate() {
   anime({
-    duration: '500',
     targets: '#animation',
-    rotateY: [90, 0],
-    easing: 'easeOutQuint',
+    duration: 2000,
+    opacity: [0, 1],
+    delay: 250,
   });
 }
 
 export function render(state) {
-  animate();
   ReactDOM.render(
     <Provider store={store}>
       <Router {...state}>
@@ -48,6 +47,7 @@ export function render(state) {
   store.dispatch(getContact());
   store.dispatch(getWork());
   store.dispatch(getPortfolio());
+  animate();
 }
 
 export function navigate(path) {
