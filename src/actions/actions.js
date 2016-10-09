@@ -5,6 +5,8 @@ import { getSummaryFromStore,
          getPortolfioFromStore,
          login,
 } from '../requests/dataStore';
+import { navigate } from '../history/history';
+
 export const SET_SUMMARY = 'setSummary';
 export const SET_CONTACT = 'setContact';
 export const SET_PORTFOLIO = 'setPortfolioItems';
@@ -115,7 +117,8 @@ export function setLoginToken(username = '', password = '') {
   return (dispatch) => {
     login(username, password)
       .then((res) => {
-        dispatch(setToken(JSON.parse(res.body.message)));
+        dispatch(setToken(res.body.message));
+        navigate('/admin');
       })
       .catch(() => {
         dispatch(setToken('ERR'));

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import {
   Input,
@@ -7,6 +7,7 @@ import {
   H2,
   Button,
   Container,
+  P,
 } from 'jam-components';
 import { setLoginToken } from '../../actions/actions';
 
@@ -53,6 +54,11 @@ class Login extends React.Component {
               }
               color="green"
             >Submit</Button>
+            <br />
+            {this.props.token === 'ERR' ?
+              <P>Error: Failed to login!</P> :
+              undefined
+            }
           </Col>
           <Col num="three">
             <br />
@@ -62,6 +68,11 @@ class Login extends React.Component {
     );
   }
 }
+
+Login.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  token: PropTypes.string,
+};
 
 function mapStateToProps(state) {
   return {
