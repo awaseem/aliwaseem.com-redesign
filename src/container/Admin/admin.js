@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
 import {
   Row,
   Col,
@@ -9,30 +10,49 @@ import SummaryEdit from './summaryEdit';
 import ContactEdit from './contactEdit';
 import WorkEdit from './WorkEdit';
 import PortfolioEdit from './portfolioEdit';
+import { navigate } from '../../history/history';
 
-function Admin() {
-  return (
-    <Container>
-      <H1 align="center">Edit you're site!</H1>
-      <Row>
-        <Col num="six">
-          <SummaryEdit />
-        </Col>
-        <Col num="six">
-          <ContactEdit />
-        </Col>
-      </Row>
-      <br />
-      <Row>
-        <Col num="six">
-          <WorkEdit />
-        </Col>
-        <Col num="six">
-          <PortfolioEdit />
-        </Col>
-      </Row>
-    </Container>
-  );
+class Admin extends React.Component {
+  componentDidMount() {
+    if (this.props.token === 'ERR' || this.props.token === '' || !this.props.token) {
+      navigate('/login');
+    }
+  }
+
+  render() {
+    return (
+      <Container>
+        <H1 align="center">Edit you're site!</H1>
+        <Row>
+          <Col num="six">
+            <SummaryEdit />
+          </Col>
+          <Col num="six">
+            <ContactEdit />
+          </Col>
+        </Row>
+        <br />
+        <Row>
+          <Col num="six">
+            <WorkEdit />
+          </Col>
+          <Col num="six">
+            <PortfolioEdit />
+          </Col>
+        </Row>
+      </Container>
+    );
+  }
 }
 
-export default Admin;
+Admin.propTypes = {
+  token: PropTypes.string,
+};
+
+function mapStateToProps(state) {
+  return {
+    token: state.get('token'),
+  };
+}
+
+export default connect(mapStateToProps)(Admin);

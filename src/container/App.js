@@ -2,7 +2,6 @@ import React from 'react';
 import Header from './Header/header';
 import Portfolio from './Portfolio/portfolio';
 import {
-  FadeIn as Fade,
   Container,
   Row,
   Col,
