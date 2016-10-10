@@ -1,13 +1,16 @@
 import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { List } from 'immutable';
 import PortfolioEditItem from './portfolioEditItem';
 import {
   Button,
 } from 'jam-components';
+import { setPortfolioToStore } from '../../actions/actions';
 
 class PortfolioEdit extends React.Component {
   constructor(props) {
     super(props);
-    this.portfolioItems = [];
+    this.portfolioItems = props.items;
     this.state = { items: props.items || [{}] };
     this.add = this.add.bind(this);
     this.updateItem = this.updateItem.bind(this);
@@ -40,11 +43,29 @@ class PortfolioEdit extends React.Component {
             handle={this.handleChange}
           />
         )}
-        <Button color="green">Save</Button>
+        <Button
+          color="green"
+          click={() =>
+            this.props.dispatch(setPortfolioToStore(this.props.token, this.portfolioItems))
+          }
+        >Save</Button>
       </div>
     );
   }
 }
 
+PortfolioEdit.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  items: PropTypes.array,
+  token: PropTypes.string,
+};
 
-export default PortfolioEdit;
+function mapStateToProps(state) {
+  const items = state.get('portfolio') || List();
+  return {
+    token: state.get('token'),
+    items: items.toJS(),
+  };
+}
+
+export default connect(mapStateToProps)(PortfolioEdit);

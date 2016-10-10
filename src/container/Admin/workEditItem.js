@@ -6,7 +6,12 @@ import {
 class WorkEditItem extends React.Component {
   constructor(props) {
     super(props);
-    this.updates = { company: '', url: '', position: '', timeline: '' };
+    this.updates = {
+      company: props.defaults.company,
+      url: props.defaults.url,
+      position: props.defaults.position,
+      timeline: props.defaults.timeline,
+    };
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -20,10 +25,30 @@ class WorkEditItem extends React.Component {
     return (
       <div>
         <hr />
-        <Input change={this.handleChange} name="company" label="Company" type="text" />
-        <Input change={this.handleChange} name="url" label="Url" type="text" />
-        <Input change={this.handleChange} name="position"label="Position" type="text" />
-        <Input change={this.handleChange} name="timeline" label="Timeline" type="text" />
+        <Input
+          change={this.handleChange}
+          value={this.updates.company}
+          name="company" label="Company"
+          type="text"
+        />
+        <Input
+          change={this.handleChange}
+          value={this.updates.url}
+          name="url" label="Url"
+          type="text"
+        />
+        <Input
+          change={this.handleChange}
+          value={this.updates.position}
+          name="position"label="Position"
+          type="text"
+        />
+        <Input
+          change={this.handleChange}
+          value={this.updates.timeline}
+          name="timeline" label="Timeline"
+          type="text"
+        />
       </div>
     );
   }
@@ -32,6 +57,7 @@ class WorkEditItem extends React.Component {
 WorkEditItem.propTypes = {
   id: PropTypes.number.isRequired,
   update: PropTypes.func.isRequired,
+  defaults: PropTypes.object,
 };
 
 export default WorkEditItem;

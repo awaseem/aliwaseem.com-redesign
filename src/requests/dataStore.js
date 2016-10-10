@@ -33,6 +33,22 @@ export function login(username = '', password = '') {
   });
 }
 
+export function setPortfolio(token = '', portfolioItems = [{}]) {
+  return post(`${DATASTORE_URL}/set`, {
+    key: PORTFOLIO_KEY,
+    value: JSON.stringify(portfolioItems),
+    token,
+  });
+}
+
+export function setWork(token = '', workItems = [{}]) {
+  return post(`${DATASTORE_URL}/set`, {
+    key: WORK_KEY,
+    value: JSON.stringify(workItems),
+    token,
+  });
+}
+
 export function setContact(token = '', email = '', github = '', linkedin = '') {
   return post(`${DATASTORE_URL}/set`, {
     key: CONTACT_KEY,

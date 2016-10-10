@@ -1,4 +1,4 @@
-import { Map, List, fromJS } from 'immutable';
+import { Map, fromJS } from 'immutable';
 import { getSummaryFromStore,
          getContactFromStore,
          getWorkFromStore,
@@ -6,6 +6,8 @@ import { getSummaryFromStore,
          login,
          setSummary as setSummaryStore,
          setContact as setContactStore,
+         setWork as setWorkStore,
+         setPortfolio as setPortfolioStore,
 } from '../requests/dataStore';
 import { navigate } from '../history/history';
 
@@ -38,7 +40,7 @@ export function setContactInfo(email = '', github = '', linkedin = '') {
   };
 }
 
-export function setWorkExperience(work = List()) {
+export function setWorkExperience(work = [{}]) {
   return {
     type: SET_WORK,
     payload: Map({
@@ -47,7 +49,7 @@ export function setWorkExperience(work = List()) {
   };
 }
 
-export function setPortfolioItems(portfolio = List()) {
+export function setPortfolioItems(portfolio = [{}]) {
   return {
     type: SET_PORTFOLIO,
     payload: Map({
@@ -145,6 +147,30 @@ export function setContactToStore(token = '', email = '', github = '', linkedin 
     setContactStore(token, email, github, linkedin)
       .then(() => {
         dispatch(setContactInfo(email, github, linkedin));
+      })
+      .catch(() => {
+        // TODO: handle error
+      });
+  };
+}
+
+export function setWorkToStore(token = '', workItems = [{}]) {
+  return (dispatch) => {
+    setWorkStore(token, workItems)
+      .then(() => {
+        dispatch(setWorkExperience(workItems));
+      })
+      .catch(() => {
+        // TODO: handle error
+      });
+  };
+}
+
+export function setPortfolioToStore(token = '', portfolioItems = [{}]) {
+  return (dispatch) => {
+    setPortfolioStore(token, portfolioItems)
+      .then(() => {
+        dispatch(setPortfolioItems(portfolioItems));
       })
       .catch(() => {
         // TODO: handle error

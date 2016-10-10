@@ -1,13 +1,16 @@
 import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { List } from 'immutable';
 import WorkEditItem from './workEditItem';
 import {
   Button,
 } from 'jam-components';
+import { setWorkToStore } from '../../actions/actions';
 
 class WorkEdit extends React.Component {
   constructor(props) {
     super(props);
-    this.workItems = [];
+    this.workItems = props.items;
     this.state = { items: props.items || [{}] };
     this.add = this.add.bind(this);
     this.updateItem = this.updateItem.bind(this);
@@ -40,11 +43,27 @@ class WorkEdit extends React.Component {
             handle={this.handleChange}
           />
         )}
-        <Button color="green">Save</Button>
+        <Button
+          color="green"
+          click={() => this.props.dispatch(setWorkToStore(this.props.token, this.workItems))}
+        >Save</Button>
       </div>
     );
   }
 }
 
+WorkEdit.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  items: PropTypes.array,
+  token: PropTypes.string,
+};
 
-export default WorkEdit;
+function mapStateToProps(state) {
+  const items = state.get('work') || List();
+  return {
+    token: state.get('token'),
+    items: items.toJS(),
+  };
+}
+
+export default connect(mapStateToProps)(WorkEdit);
