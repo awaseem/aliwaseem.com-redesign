@@ -33,12 +33,9 @@ class Admin extends React.Component {
         </Row>
         <br />
         <Row>
-          <Col num="six">
-            <WorkEdit />
-          </Col>
-          <Col num="six">
-            <PortfolioEdit />
-          </Col>
+          <WorkEdit />
+          <br />
+          <PortfolioEdit />
         </Row>
       </Container>
     );
