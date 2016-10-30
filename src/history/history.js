@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import anime from 'animejs';
 import { Router, Route } from 'react-enroute';
 import thunkMiddleware from 'redux-thunk';
-import createLogger from 'redux-logger';
+// import createLogger from 'redux-logger';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { Map } from 'immutable';
@@ -15,9 +15,11 @@ import Admin from '../container/Admin/admin';
 import NotFound from '../container/Error/404';
 import { getSummary, getContact, getWork, getPortfolio } from '../actions/actions';
 
-const loggerMiddleware = createLogger();
+// const loggerMiddleware = createLogger();
 
-const middlewares = [thunkMiddleware, loggerMiddleware];
+// DEBUG: const middlewares = [thunkMiddleware, loggerMiddleware];
+
+const middlewares = [thunkMiddleware];
 
 const createStoreWithMiddleware = applyMiddleware(...middlewares)(createStore);
 
