@@ -1,0 +1,14 @@
+sudo: false
+language: node_js
+node_js:
+    - "7.0.0"
+services:
+  - docker
+before_install:
+    - sleep 15
+    - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+after_success:
+    - docker build -t awaseem/aliwaseemwebsite:$TRAVIS_BRANCH-$TRAVIS_COMMIT .
+    - sleep 5
+    - docker push awaseem/aliwaseemwebsite:$TRAVIS_BRANCH-$TRAVIS_COMMIT
+    - docker logout
