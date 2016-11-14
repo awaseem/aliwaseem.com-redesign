@@ -8,7 +8,7 @@ import {
 } from 'jam-components';
 import SummaryEdit from './summaryEdit';
 import ContactEdit from './contactEdit';
-import WorkEdit from './WorkEdit';
+import WorkEdit from './workEdit';
 import PortfolioEdit from './portfolioEdit';
 import { navigate } from '../../history/history';
 
