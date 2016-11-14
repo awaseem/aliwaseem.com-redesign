@@ -1,4 +1,4 @@
-FROM node:7.0.0-slim
+FROM node:6.1
 
 RUN mkdir src/
 
@@ -8,8 +8,8 @@ COPY . /src
 
 ENV NODE_ENV production
 
-RUN cd /src; npm install
+RUN cd /src; npm install; npm run build
 
 expose 3000
 
-CMD ["npm", "run", "prod"]
+CMD ["npm", "run", "runProd"]
