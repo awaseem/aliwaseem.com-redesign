@@ -9,11 +9,12 @@ import {
 } from 'jam-components';
 import jump from 'jump.js';
 import image from './header.jpg';
+import '../../styles/header.css';
 
 const HEADER_IMAGE = image;
-const HEADER_HEIGHT = '75vh';
+const HEADER_HEIGHT = '100vh';
 const BUTTON_COLOR = 'black';
-const HEADER_PADDING_TOP = '225px';
+const HEADER_PADDING_TOP = '0px';
 
 function Header() {
   return (
@@ -22,12 +23,14 @@ function Header() {
       height={HEADER_HEIGHT}
       paddingTop={HEADER_PADDING_TOP}
     >
-      <TextCenter>
-        <H1>Ali Waseem</H1>
-        <H5>Software Engineer</H5>
-        <H6>Proud Canadian Living in Los Angeles</H6>
-        <Button click={() => jump('#summary')} color={BUTTON_COLOR}>tell me more</Button>
-      </TextCenter>
+      <div className="header-content">
+        <TextCenter>
+          <H1>Ali Waseem</H1>
+          <H5>Software Engineer</H5>
+          <H6>Proud Canadian Living in Los Angeles</H6>
+          <Button click={() => jump('#summary')} color={BUTTON_COLOR}>tell me more</Button>
+        </TextCenter>
+      </div>
     </JamHeader>
   );
 }
