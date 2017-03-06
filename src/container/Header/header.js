@@ -27,7 +27,7 @@ function Header() {
         <TextCenter>
           <H1>Ali Waseem</H1>
           <H5>Software Engineer</H5>
-          <H6>Proud Canadian Living in Los Angeles</H6>
+          <H6>Proud Canadian living in Los Angeles</H6>
           <Button click={() => jump('#summary')} color={BUTTON_COLOR}>tell me more</Button>
         </TextCenter>
       </div>
