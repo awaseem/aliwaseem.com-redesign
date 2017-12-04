@@ -13,7 +13,7 @@ import '../../styles/header.css';
 
 const HEADER_IMAGE = image;
 const HEADER_HEIGHT = '100vh';
-const BUTTON_COLOR = 'black';
+const BUTTON_COLOR = 'red';
 const HEADER_PADDING_TOP = '0px';
 
 function Header() {
@@ -26,8 +26,8 @@ function Header() {
       <div className="header-content">
         <TextCenter>
           <H1>Ali Waseem</H1>
-          <H5>Software Engineer</H5>
-          <H6>Proud Canadian living in Los Angeles</H6>
+          <H5>Software Developer</H5>
+          <H6>Exploring the wilderness in Alberta</H6>
           <Button click={() => jump('#summary')} color={BUTTON_COLOR}>tell me more</Button>
         </TextCenter>
       </div>

@@ -9,7 +9,7 @@ import { createWorkRows } from '../../helpers/colHelper';
 function Work({ workRows }) {
   return (
     <div>
-      <H2>Work Experince</H2>
+      <H2>Work Experience</H2>
       <Hr />
       {workRows}
     </div>
